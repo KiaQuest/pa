@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Followable extends Model
 {
     use HasFactory;
-    protected $table = 'Followable';
-    protected $primaryKey = 'user_id';
+    protected $table = 'Followables';
+    protected $primaryKey = 'follower_id';
     protected $guarded = [];
     public $timestamps = false;
     public function users() : MorphToMany

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Followable;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -46,5 +47,25 @@ class FollowController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    public function check_follow($id)
+    {
+
+//        kendi ID'm
+//        $id = Auth::id();
+        $id1 = 1;
+//        Karsi adamin ID'si
+        $id;
+
+//        $find = Followable::find($id);
+        $find2 = Followable::where('follower_id' , $id1)->where('followable_id' , $id)->first();
+
+        if ($find2 != null){
+            echo '{"follow":"true", "message":null}';
+        }else{
+            echo '{"follow":"false", "message":null}';
+        }
+//        dd($find2);
     }
 }

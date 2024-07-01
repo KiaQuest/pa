@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('followables', function (Blueprint $table) {
-            $table->foreignId('follower_id')->constrained();
+            $table->integer('follower_id');
             $table->morphs('followable');
         });
     }
