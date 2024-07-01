@@ -44,6 +44,7 @@
                 // Handle successful response
                 var data = JSON.parse(response);
                 console.log(data.follow);
+                const check = data.follow;
             },
             error: function(xhr, status, error) {
                 // Handle error
@@ -52,4 +53,9 @@
         });
 
     }
+
+    // window.onload = check_follow();
+    // if(check == true){
+    //     console.log('ssdsd');
+    // }
 </script>
