@@ -1,30 +1,25 @@
-<h1>
-    this is profile page
+<h1> this is profile page </h1>
 
-</h1>
+<p> followers 0  -  following 0 </p>
 
-<p>
-    followers 0
-</p>
-<p>
-    following 0
-</p>
 
+@if($check == 0)
 <form action="{{route('profile.follow')}}" method="post">
 
     @csrf
     <button type="submit">Follow</button>
 </form>
+@elseif($check == 1)
 <form action="{{route('profile.unfollow')}}" method="post">
 
     @csrf
     <button type="submit">unFollow</button>
 </form>
-
+@endif
 
 
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-
+{{--<meta name="csrf-token" content="{{ Session::token() }}">--}}
 
 <div id="demo">
     <h2>The XMLHttpRequest Object</h2>
@@ -34,8 +29,31 @@
 <script>
 
     function check_follow() {
+
+
+        // $.ajaxSetup({
+        //     headers: {
+        //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //     }
+        // });
+        //
+        // $.ajax({
+        //     url: 'http://127.0.0.1:8000/check_follow/3',
+        //     method: 'post',
+        //     data: $('#form-id').serialize(), // prefer use serialize method
+        //     success:function(data){
+        //         console.log(data);
+        //     }
+        // });
+        //
+        // return;
         // Karşi adamin ID'si
-        const id = 3;
+        const id = 4;
+
+
+        // $.ajaxSetup({
+        //     headers: {'X-CSRF-Token': $('#_token').val()}
+        // });
 
         $.ajax({
             url: "http://127.0.0.1:8000/check_follow/"+id,

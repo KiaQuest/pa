@@ -10,7 +10,18 @@ class FollowController extends Controller
 {
     public function index()
     {
-        return view('profile');
+        $id = 1;
+        $following_user_id = 3;
+
+        $find2 = Followable::where('follower_id' , $id)->where('followable_id' , $following_user_id)->first();
+
+        if ($find2 == null){
+            $check = 0;
+        }else{
+            $check = 1;
+        }
+
+        return view('profile' , compact('check'));
     }
 
     public function follow(Request $request)
