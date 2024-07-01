@@ -11,18 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('password_reset_tokens', function (Blueprint $table) {
-            $table->string('email')->primary();
-            $table->string('token');
-            $table->timestamp('created_at')->nullable();
+
+        Schema::create('follow_user', function (Blueprint $table) {
+            $table->integer('user_id');
+            $table->integer('follow_id');
         });
     }
+//ALTER TABLE follow_user ADD PRIMARY KEY (user_id,follow_id)
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('password_reset_tokens');
+        //
     }
 };

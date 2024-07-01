@@ -19,3 +19,5 @@ Route::get('/', function () {
 });
 
 Route::get('/profile', [FollowController::class, 'index'])->name('profile.index');
+Route::post('/follow-profile', [FollowController::class, 'follow'])->name('profile.follow');
+Route::post('/unfollow-profile', [FollowController::class, 'unfollow'])->name('profile.unfollow');
