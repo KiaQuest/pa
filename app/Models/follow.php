@@ -11,7 +11,7 @@ class follow extends Model
 
     protected $table = 'follows';
     protected $primaryKey = 'user_id';
-    protected $guarded = 'user_id';
+    protected $guarded = [];
     public $timestamps = false;
     public function follows()
     {

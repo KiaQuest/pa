@@ -44,17 +44,17 @@ class User extends Authenticatable
 
     public function follower(): MorphMany
     {
-        return $this->morphToMany(follow::class, 'followable');
+        return $this->morphToMany(Followable::class, 'Followable');
     }
     public function following(): MorphMany
     {
-        return $this->morphToMany(follow::class, 'followable');
+        return $this->morphToMany(Followable::class, 'Followable');
     }
 
-    public function follows()
-    {
-        return $this->belongsToMany(follow::class , 'follow_user' , 'user_id' , 'follow_id');
-    }
+//    public function follows()
+//    {
+//        return $this->belongsToMany(follow::class , 'follow_user' , 'user_id' , 'follow_id');
+//    }
 
 
 }
