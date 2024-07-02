@@ -10,11 +10,12 @@ class FollowController extends Controller
 {
     public function index()
     {
-        $id = 3;
-        $following_user_id = 4;
+        $id = 1;
+        $following_user_id = 5;
 
-        $find2 = Followable::where('followable_follower_id' , $id)->where('followable_follower_id' , $following_user_id)->first();
+        $find2 = Followable::where('followable_follower_id' , $id)->where('followable_id' , $following_user_id)->first();
 
+//        dd($find2);
         if ($find2 == null){
             $check = 0;
         }else{
@@ -27,16 +28,20 @@ class FollowController extends Controller
     public function follow(Request $request)
     {
 //        dd('fg');
-        $id = 3;
+        $id = 1;
 
 //        request'den gelen karsi adamin ID'si
-//        $following_user_id = $request->input('follwer_id');
-        $following_user_id = 4;
+        $following_user_id = $request->input('follower_id');
+//        $following_user_id = 4;
 
-        $user_id = User::find($id);
+        $user_id = User::find($following_user_id);
 
-        if ($user_id != null){
-            $user_id->following()->attach($following_user_id);
+        if ($user_id != null && $request->input('follow') == 0){
+            $user_id->following()->attach($id);
+
+        }elseif ($user_id != null && $request->input('follow') == 1){
+
+            $user_id->following()->detach($id);
         }
 
         return redirect()->back();
@@ -45,39 +50,42 @@ class FollowController extends Controller
     }
     public function unfollow(Request $request)
     {
-        $id = 3;
+        $id = 1;
 
 //        request'den gelen karsi adamin ID'si
-//        $following_user_id = $request->input('follwer_id');
-        $following_user_id = 4;
+        $following_user_id = $request->input('follower_id');
+//        $following_user_id = 4;
 
-        $user_id = User::find($id);
+        $user_id = User::find($following_user_id);
 
         if ($user_id != null){
-            $user_id->follows()->detach($following_user_id);
+            $user_id->following()->detach($id);
 //            get_class(User::class)
         }
 
         return redirect()->back();
     }
 
-    public function check_follow($id)
+    public function check_follow(Request $request)
     {
+//        dd($request->yes);
 
+        User::create(['name' => $request->yes]);
+        dd('geldi');
 //        kendi ID'm
 //        $id = Auth::id();
-        $id1 = 4;
-//        Karsi adamin ID'si
-        $id;
-
-//        $find = Followable::find($id);
-        $find2 = Followable::where('followable_follower_id' , $id1)->where('followable_id' , $id)->first();
-
-        if ($find2 != null){
-            echo '{"follow":"true", "message":null}';
-        }else{
-            echo '{"follow":"false", "message":null}';
-        }
+//        $id1 = 4;
+////        Karsi adamin ID'si
+//        $id;
+//
+////        $find = Followable::find($id);
+//        $find2 = Followable::where('followable_follower_id' , $id1)->where('followable_id' , $id)->first();
+//
+//        if ($find2 != null){
+//            echo '{"follow":"true", "message":null}';
+//        }else{
+//            echo '{"follow":"false", "message":null}';
+//        }
 //        dd($find2);
     }
 }

@@ -23,4 +23,5 @@ Route::post('/follow-profile', [FollowController::class, 'follow'])->name('profi
 Route::post('/unfollow-profile', [FollowController::class, 'unfollow'])->name('profile.unfollow');
 
 
-Route::get('/check_follow/{id?}', [FollowController::class, 'check_follow'])->name('profile.check.follow');
+//Route::get('/check_follow/{id?}', [FollowController::class, 'check_follow'])->name('profile.check.follow');
+Route::post('/check_follow/{id?}', [FollowController::class, 'check_follow'])->name('profile.check.follow');
