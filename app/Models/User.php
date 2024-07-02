@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -42,13 +43,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function follower(): MorphMany
+//    public function follower(): MorphMany
+//    {
+//        return $this->morphToMany(Followable::class, 'Followable');
+//    }
+    public function following(): MorphToMany
     {
-        return $this->morphToMany(Followable::class, 'Followable');
-    }
-    public function following(): MorphMany
-    {
-        return $this->morphToMany(Followable::class, 'Followable');
+        return $this->morphToMany(Followable::class, 'followable');
     }
 
 //    public function follows()

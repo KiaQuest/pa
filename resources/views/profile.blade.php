@@ -18,8 +18,10 @@
 @endif
 
 
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+{{--<script src="https://code.jquery.com/jquery-1.10.2.js"></script>--}}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 {{--<meta name="csrf-token" content="{{ Session::token() }}">--}}
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 <div id="demo">
     <h2>The XMLHttpRequest Object</h2>
@@ -48,7 +50,7 @@
         //
         // return;
         // Karşi adamin ID'si
-        const id = 4;
+        const id = 3;
 
 
         // $.ajaxSetup({

@@ -10,10 +10,10 @@ class FollowController extends Controller
 {
     public function index()
     {
-        $id = 1;
-        $following_user_id = 3;
+        $id = 3;
+        $following_user_id = 4;
 
-        $find2 = Followable::where('follower_id' , $id)->where('followable_id' , $following_user_id)->first();
+        $find2 = Followable::where('followable_follower_id' , $id)->where('followable_follower_id' , $following_user_id)->first();
 
         if ($find2 == null){
             $check = 0;
@@ -26,6 +26,7 @@ class FollowController extends Controller
 
     public function follow(Request $request)
     {
+//        dd('fg');
         $id = 3;
 
 //        request'den gelen karsi adamin ID'si
@@ -35,7 +36,7 @@ class FollowController extends Controller
         $user_id = User::find($id);
 
         if ($user_id != null){
-            $user_id->follows()->attach($following_user_id);
+            $user_id->following()->attach($following_user_id);
         }
 
         return redirect()->back();
@@ -65,12 +66,12 @@ class FollowController extends Controller
 
 //        kendi ID'm
 //        $id = Auth::id();
-        $id1 = 1;
+        $id1 = 4;
 //        Karsi adamin ID'si
         $id;
 
 //        $find = Followable::find($id);
-        $find2 = Followable::where('follower_id' , $id1)->where('followable_id' , $id)->first();
+        $find2 = Followable::where('followable_follower_id' , $id1)->where('followable_id' , $id)->first();
 
         if ($find2 != null){
             echo '{"follow":"true", "message":null}';

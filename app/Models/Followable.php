@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Followable extends Model
 {
@@ -14,6 +15,6 @@ class Followable extends Model
     public $timestamps = false;
     public function users() : MorphToMany
     {
-        return $this->morphedByMany(User::class , 'Followable');
+        return $this->morphedByMany(User::class , 'followable');
     }
 }
