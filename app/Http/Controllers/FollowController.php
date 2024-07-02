@@ -36,13 +36,22 @@ class FollowController extends Controller
 
         $user_id = User::find($following_user_id);
 
-        if ($user_id != null && $request->input('follow') == 0){
+
+        $find2 = Followable::where('followable_follower_id' , $id)->where('followable_id' , $following_user_id)->first();
+
+        if ($find2 == null){
             $user_id->following()->attach($id);
-
-        }elseif ($user_id != null && $request->input('follow') == 1){
-
+        }else{
             $user_id->following()->detach($id);
         }
+//
+//        if ($user_id != null && $request->input('follow') == 0){
+//            $user_id->following()->attach($id);
+//
+//        }elseif ($user_id != null && $request->input('follow') == 1){
+//
+//            $user_id->following()->detach($id);
+//        }
 
         return redirect()->back();
 //        dd('geldi');

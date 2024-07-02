@@ -25,7 +25,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 {{--<meta name="csrf-token" content="{{ Session::token() }}">--}}
 <meta name="csrf-token" content="{{ csrf_token() }}">
-1.5
+{{--1.5--}}
 <form id="ajaxForm">
     @csrf
     <div id="button">
@@ -39,7 +39,7 @@
     </div>
 </form>
 
-<div id="responseMessage"></div>
+{{--<div id="responseMessage"></div>--}}
 
 <script>
     $(document).ready(function () {
@@ -52,36 +52,39 @@
         $('#ajaxForm').on('submit', function (e) {
             e.preventDefault();
 
-            let followInput = document.getElementById('name2');
-            let SubmitButton = document.getElementById('followButton');
-            // document.getElementById('button').style.display = 'none';
-            let follow = followInput.getAttribute("value");
+            // document.getElementById('followButton').innerHTML = 'unFollow';
+            // const followInput = document.getElementById('name2');
+            // let SubmitButton = document.getElementById('followButton');
+            // // document.getElementById('button').style.display = 'none';
+            // const follow = followInput.getAttribute("value");
             // if(follow == 0){
             //     followInput.setAttribute("value", "1");
+            //     followInput.innerHTML = '1';
             //     // SubmitButton.innerHTML = 'unFollow';
             // }else if(follow == 1){
             //     followInput.setAttribute("value", "0");
+            //     followInput.innerHTML = '0';
             //     // SubmitButton.innerHTML = 'Follow';
             // }
-            console.log(follow);
+            // console.log(follow);
             console.log('follow');
 
             $.ajax({
                 type: 'POST',
                 url: '{{route('profile.follow')}}',
-                data: $(this).serialize(),
-                success: function (response) {
-                    $('#responseMessage').html('<p>' + response.success + '</p>');
-                },
-                error: function (response) {
-                    $('#responseMessage').html('<p>An error occurred</p>');
-                }
+                data: $(this).serialize()
+                // ,success: function (response) {
+                //     $('#responseMessage').html('<p>' + response.success + '</p>');
+                // },
+                // error: function (response) {
+                //     $('#responseMessage').html('<p>An error occurred</p>');
+                // }
             });
         });
     });
 </script>
 
-2
+{{--2--}}
 
 {{--<form action="http://127.0.0.1:8000/check_follow" method="post">--}}
 
@@ -89,48 +92,48 @@
 {{--    @csrf--}}
 {{--    <button type="submit">Go</button>--}}
 {{--</form>--}}
-2.5
-<script>
-    function convertCurrency() {
+{{--2.5--}}
+{{--<script>--}}
+{{--    function convertCurrency() {--}}
 
-        var fromCurrency = document.getElementById('select1').value;
-        var toCurrency = document.getElementById('select2').value;
-        var amount = document.getElementById('value').value;
+{{--        var fromCurrency = document.getElementById('select1').value;--}}
+{{--        var toCurrency = document.getElementById('select2').value;--}}
+{{--        var amount = document.getElementById('value').value;--}}
 
-        fetch("google.com", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                _token: "{{ csrf_token() }}",
-                from: fromCurrency,
-                to: toCurrency,
-                value: amount,
-            }),
-        })
-            .then(response => response.json())
-            .then(data => {
-                // Handle the server response
-                if (data.status === 1) {
-                    // Update the result in the HTML
-                    document.getElementById('resultConvert').innerText = 📈: ${data.res};
-                } else {
-                    // Handle the error
-                    alert(data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }
+{{--        fetch("google.com", {--}}
+{{--            method: 'POST',--}}
+{{--            headers: {--}}
+{{--                'Content-Type': 'application/json',--}}
+{{--            },--}}
+{{--            body: JSON.stringify({--}}
+{{--                _token: "{{ csrf_token() }}",--}}
+{{--                from: fromCurrency,--}}
+{{--                to: toCurrency,--}}
+{{--                value: amount,--}}
+{{--            }),--}}
+{{--        })--}}
+{{--            .then(response => response.json())--}}
+{{--            .then(data => {--}}
+{{--                // Handle the server response--}}
+{{--                if (data.status === 1) {--}}
+{{--                    // Update the result in the HTML--}}
+{{--                    document.getElementById('resultConvert').innerText = 📈: ${data.res};--}}
+{{--                } else {--}}
+{{--                    // Handle the error--}}
+{{--                    alert(data.message);--}}
+{{--                }--}}
+{{--            })--}}
+{{--            .catch(error => {--}}
+{{--                console.error('Error:', error);--}}
+{{--            });--}}
+{{--    }--}}
 
-</script>
-3
-<div id="demo">
-    <h2>The XMLHttpRequest Object</h2>
-    <button type="button" onclick="check_follow()">Change Content</button>
-</div>
+{{--</script>--}}
+{{--3--}}
+{{--<div id="demo">--}}
+{{--    <h2>The XMLHttpRequest Object</h2>--}}
+{{--    <button type="button" onclick="check_follow()">Change Content</button>--}}
+{{--</div>--}}
 
 <script>
 
@@ -161,20 +164,20 @@
         //     headers: {'X-CSRF-Token': $('#_token').val()}
         // });
 
-        $.ajax({
-            url: "http://127.0.0.1:8000/check_follow/"+id,
-            type: 'GET',
-            success: function(response) {
-                // Handle successful response
-                var data = JSON.parse(response);
-                console.log(data.follow);
-                const check = data.follow;
-            },
-            error: function(xhr, status, error) {
-                // Handle error
-                console.error('Error:', error);
-            }
-        });
+        // $.ajax({
+        //     url: "http://127.0.0.1:8000/check_follow/"+id,
+        //     type: 'GET',
+        //     success: function(response) {
+        //         // Handle successful response
+        //         var data = JSON.parse(response);
+        //         console.log(data.follow);
+        //         const check = data.follow;
+        //     },
+        //     error: function(xhr, status, error) {
+        //         // Handle error
+        //         console.error('Error:', error);
+        //     }
+        // });
 
     }
 
